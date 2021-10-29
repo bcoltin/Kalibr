@@ -179,7 +179,7 @@ def main():
             cam = kcc.CameraGeometry(cameraModel, targetConfig, dataset,verbose=(parsed.verbose or parsed.showextraction))
                 
             #extract the targets
-            multithreading = not (parsed.verbose or parsed.showextraction)
+            multithreading = not (parsed.verbose or parsed.showextraction or parsed.target_corners_dirs is not None)
             target_corners_dir = ""
             if parsed.target_corners_dirs is not None and len(parsed.target_corners_dirs) > 0:
                 target_corners_dir = parsed.target_corners_dirs[cam_id]
@@ -199,7 +199,7 @@ def main():
                                                         target_corners_dir)
 
             # We won't do calibration, will just extract the corners
-            if len(parsed.target_corners_dirs) > 0:
+            if parsed.target_corners_dirs is not None and len(parsed.target_corners_dirs) > 0:
                 continue
             
             #populate the database

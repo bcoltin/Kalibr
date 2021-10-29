@@ -96,7 +96,7 @@ def extractCornersFromDataset(dataset, detector, multithreading=False, numProces
                 # For the filename, use the same format as in extract_image_bag,
                 # that is, the timestamp with %10.7f format is the filename.
                 filename = '%s/%10.7f.txt' % (target_corners_dir, timestamp_obs)
-                print("Writing: " + filename)
+                print("\nWriting: " + filename)
                 with open(filename, 'w') as fh:
                     for i in range(len(targetCorners)):
                         fh.write('%0.17g %0.17g %0.17g %0.17g %0.17g\n' %
