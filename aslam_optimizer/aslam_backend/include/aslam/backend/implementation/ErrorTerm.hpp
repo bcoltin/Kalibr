@@ -192,7 +192,7 @@ namespace aslam {
     }
 
     template<int C>
-    void ErrorTermFs<C>::checkJacobiansFinite() const {
+    void ErrorTermFs<C>::checkJacobiansFinite() {
       JacobianContainer J(C);
       evaluateJacobians(J);
       for (JacobianContainer::map_t::iterator it = J.begin(); it != J.end(); ++it) {      

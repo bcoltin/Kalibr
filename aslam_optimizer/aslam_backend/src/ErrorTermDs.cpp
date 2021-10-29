@@ -166,7 +166,7 @@ namespace aslam {
       e = _sqrtInvR.transpose() * _error * sqrtWeight;
     }
 
-    void ErrorTermDs::checkJacobiansFinite() const {
+    void ErrorTermDs::checkJacobiansFinite() {
 #ifdef BOOST_NO_AUTO_DECLARATIONS
         for (JacobianContainer::map_t::iterator it = _jacobians.begin(); it != _jacobians.end(); ++it) {      
 #else

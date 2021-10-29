@@ -126,8 +126,8 @@ def parseArgs():
         sm.logError("Please specify exactly one camera model (--models) for each topic (--topics).")
         sys.exit(2)
 
-    if (len(parsed.target_corners_dirs) > 0) and \
-           (len(parsed.target_corners_dirs) != len(parsed.models)):
+    if ((parsed.target_corners_dirs is not None) and (len(parsed.target_corners_dirs) > 0) and \
+        (len(parsed.target_corners_dirs) != len(parsed.models))):
         sm.logError("Please specify exactly one directory for storing detected corners for each camera or ommit this argument.")
         sys.exit(2)
     if parsed.minViewOutlier<1:
@@ -181,7 +181,7 @@ def main():
             #extract the targets
             multithreading = not (parsed.verbose or parsed.showextraction)
             target_corners_dir = ""
-            if len(parsed.target_corners_dirs) > 0:
+            if parsed.target_corners_dirs is not None and len(parsed.target_corners_dirs) > 0:
                 target_corners_dir = parsed.target_corners_dirs[cam_id]
                 try:
                     os.makedirs(target_corners_dir)
@@ -217,7 +217,7 @@ def main():
         else:
             raise RuntimeError( "Unknown camera model: {0}. Try {1}.".format(modelName, cameraModels.keys()) )
 
-    if len(parsed.target_corners_dirs) > 0:
+    if parsed.target_corners_dirs is not None and len(parsed.target_corners_dirs) > 0:
         print("Finished extracting the calibration target corners")
         sys.exit(1)
         

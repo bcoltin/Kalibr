@@ -213,7 +213,7 @@ namespace aslam {
       virtual void getWeightedError(Eigen::VectorXd& e, bool useMEstimator) const;
 
       /// Check if Jacobians are finite
-      void checkJacobiansFinite() const;
+      void checkJacobiansFinite();
       /// Check if analytical and numerical Jacobians match
       void checkJacobiansNumerical(double tolerance = 1e-6);
 
