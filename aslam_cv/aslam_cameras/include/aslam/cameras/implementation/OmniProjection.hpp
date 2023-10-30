@@ -299,7 +299,6 @@ bool OmniProjection<DISTORTION_T>::keypointToEuclidean(
 
   outPoint[2] = 1 - _xi * (rho2_d + 1) * recip_tmpA;
 
-  // \todo analytical Jacobian
   Eigen::MatrixBase<DERIVED_JK> & mbJk =
       const_cast<Eigen::MatrixBase<DERIVED_JK> &>(outJk);
   DERIVED_JK & Jk = mbJk.derived();
@@ -895,7 +894,7 @@ bool OmniProjection<DISTORTION_T>::estimateTransformation(
     Eigen::Vector3d backProjection;
 
     if (keypointToEuclidean(imagePoint, backProjection)
-        && backProjection[2] > 0.0) {
+        && backProjection.normalized()[2] > std::cos(80.0*M_PI/180.0)) {
       double x = backProjection[0];
       double y = backProjection[1];
       double z = backProjection[2];

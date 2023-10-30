@@ -263,7 +263,6 @@ class PinholeProjection {
   double _fu_over_fv;
 
   distortion_t _distortion;
-
 };
 
 }  // namespace cameras

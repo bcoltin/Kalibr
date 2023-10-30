@@ -6,13 +6,23 @@ import roslib; roslib.load_manifest('sm_python'); import sm
 import roslib; roslib.load_manifest('aslam_backend'); import aslam_backend
 import roslib; roslib.load_manifest('aslam_cv_python'); import aslam_cv
 # Import the the C++ exports from your package library.
-from libaslam_cv_backend_python import *
+from .libaslam_cv_backend_python import *
 # Import other files in the directory
 # from mypyfile import *
 
 # Now build some convenience wrappers
 class CameraModel(object):
     pass
+
+class Omni(CameraModel):
+    geometry = aslam_cv.OmniCameraGeometry
+    reprojectionError = OmniReprojectionError
+    reprojectionErrorSimple = OmniReprojectionErrorSimple
+    designVariable = OmniCameraGeometryDesignVariable
+    projectionType = aslam_cv.OmniProjection
+    distortionType = aslam_cv.NoDistortion
+    shutterType = aslam_cv.GlobalShutter
+    frameType = aslam_cv.OmniFrame
 
 class DistortedOmni(CameraModel):
     geometry = aslam_cv.DistortedOmniCameraGeometry
@@ -86,3 +96,24 @@ class FovPinhole(CameraModel):
     distortionType = aslam_cv.FovDistortion
     shutterType = aslam_cv.GlobalShutter
     frameType = aslam_cv.FovDistortedPinholeFrame
+
+class ExtendedUnified(CameraModel):
+    geometry = aslam_cv.ExtendedUnifiedCameraGeometry
+    reprojectionError = ExtendedUnifiedReprojectionError
+    reprojectionErrorSimple = ExtendedUnifiedReprojectionErrorSimple
+    designVariable = ExtendedUnifiedCameraGeometryDesignVariable
+    projectionType = aslam_cv.ExtendedUnifiedProjection
+    distortionType = aslam_cv.NoDistortion
+    shutterType = aslam_cv.GlobalShutter
+    frameType = aslam_cv.ExtendedUnifiedFrame
+
+class DoubleSphere(CameraModel):
+    geometry = aslam_cv.DoubleSphereCameraGeometry
+    reprojectionError = DoubleSphereReprojectionError
+    reprojectionErrorSimple = DoubleSphereReprojectionErrorSimple
+    designVariable = DoubleSphereCameraGeometryDesignVariable
+    projectionType = aslam_cv.DoubleSphereProjection
+    distortionType = aslam_cv.NoDistortion
+    shutterType = aslam_cv.GlobalShutter
+    frameType = aslam_cv.DoubleSphereFrame
+
